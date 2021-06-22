@@ -6,7 +6,7 @@
 /*   By: ugdaniel <ugdaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:59:41 by ugdaniel          #+#    #+#             */
-/*   Updated: 2021/06/22 16:01:24 by ugdaniel         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:31:02 by ugdaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ static void	send_char(pid_t pid, const char *s, size_t len)
 				if ((kill(pid, SIGUSR2)) == -1)
 					error("Error\nCould not find any server with this PID\n");
 			}
-			else if ((kill(pid, SIGUSR1)) == -1)
-				error("Error\nCould not find any server with this PID\n");
+			else
+			{
+				if ((kill(pid, SIGUSR1)) == -1)
+					error("Error\nCould not find any server with this PID\n");
+			}
 			shift++;
 			usleep(100);
 		}
