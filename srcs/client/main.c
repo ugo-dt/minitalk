@@ -6,7 +6,7 @@
 /*   By: ugdaniel <ugdaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:59:41 by ugdaniel          #+#    #+#             */
-/*   Updated: 2021/06/22 16:31:02 by ugdaniel         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:44:43 by ugdaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, const char **argv)
 	if (argc < 3 || argc > 3 || !argv || !str_isdigit(argv[1]))
 		error("Error\nUsage: ./client <server PID> <string>\n");
 	serv_pid = ft_atol(argv[1]);
-	if (serv_pid > INT32_MAX || serv_pid <= 0)
+	if (serv_pid > 32768 || serv_pid <= 0)
 		error("Error\nPlease make sure PID is valid\n");
 	signal(SIGUSR1, success);
 	send_char(serv_pid, argv[2], ft_strlen(argv[2]));
