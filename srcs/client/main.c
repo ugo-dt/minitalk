@@ -6,7 +6,7 @@
 /*   By: ugdaniel <ugdaniel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:59:41 by ugdaniel          #+#    #+#             */
-/*   Updated: 2021/06/22 16:51:30 by ugdaniel         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:58:35 by ugdaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ static void	send_char(pid_t pid, const char *s, size_t len)
 	}
 }
 
-void	success(int sig)
-{
-	(void)sig;
-	write(1, "Message sent successfully\n", 26);
-}
-
 int	main(int argc, const char **argv)
 {
 	pid_t		serv_pid;
@@ -55,7 +49,6 @@ int	main(int argc, const char **argv)
 	serv_pid = ft_atol(argv[1]);
 	if (serv_pid > 2147483647 || serv_pid <= 0)
 		error("Error\nPlease make sure PID is valid\n");
-	signal(SIGUSR1, success);
 	send_char(serv_pid, argv[2], ft_strlen(argv[2]));
 	return (EXIT_SUCCESS);
 }
